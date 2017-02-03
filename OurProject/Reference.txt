@@ -1,0 +1,8 @@
+https://blog.udemy.com/a-step-by-step-asp-net-tutorial-for-beginners/
+
+
+Integration Google Maps
+https://nicetomvcyou.wordpress.com/2016/06/09/google-map-with-custom-marker-asp-net-mvc-5/
+http://stackoverflow.com/questions/17275290/get-data-from-a-controller-return-as-json-and-preview-in-cshtml
+https://chsakell.com/2013/06/08/retrieve-json-data-from-mvc-controllers-in-asp-net-mvc/
+http://stackoverflow.com/questions/1196415/what-datatype-to-use-when-storing-latitude-and-longitude-data-in-sql-databases
