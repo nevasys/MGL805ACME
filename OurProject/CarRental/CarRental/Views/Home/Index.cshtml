@@ -110,22 +110,36 @@
         //          { "Id": 4, "PlaceName": "National Conservation Centre", "OpeningHours": "10-6, M-F", "GeoLong": "53.407511", "GeoLat": "-2.984683" }
         //       ];
 
+        //var data = $.ajax({
+        //    url: "/Agencies/GetAgencyDataJson",
+        //                    type: "GET",
+        //                    dataType: 'html',
+        //                    data: { Category: "All" }, // the value id for call your controller
+        //                    success: function (data) {
+        //                        // make sure your result variable is enumerable.
+        //                        $(data).each(function (index, element) {
+        //                            $("#bottom-area-trend-charts div").append("<p>" + element.Name + "</p>");
+        //                        });
+        //                    },
+        //                    error: function (xqr, errorMessage) {
+        //                        alert(errorMessage);
+        //                    }
+        //});
+        
         var data = $.ajax({
             url: "/Agencies/GetAgencyDataJson",
-                            type: "GET",
-                            dataType: 'html',
-                            data: { Category: "All" }, // the value id for call your controller
-                            success: function (data) {
-                                // make sure your result variable is enumerable.
-                                $(data).each(function (index, element) {
-                                    $("#bottom-area-trend-charts div").append("<p>" + element.Name + "</p>");
-                                });
-                            },
-                            error: function (xqr, errorMessage) {
-                                alert(errorMessage);
-                            }
+            type: "GET",
+            dataType: 'json',
+            data: { Category: "All" }, // the value id for call your controller
+            success: function (data) {
+                //Do stuff with the JSON data
+                console.debug("%o", data);
+            },
+            error: function (xqr, errorMessage) {
+                alert(errorMessage);
+            }
         });
-        
+
             // Using the JQuery "each" selector to iterate through the JSON list and drop marker pins
         $.each(data, function (i, item) {
                 var marker = new google.maps.Marker({

@@ -49,16 +49,16 @@ namespace CarRental.Controllers
             IEnumerable<Agency> data = GetData(selectedCategory);
             IEnumerable<Geodata> geodata = data
                 .Select(i => new Geodata
-                { ID= i.Id.ToString(),
-                                   Name = i.Name,
-                                   GeoLong = i.Longitude.ToString(),
-                                   GeoLat = i.Latitude.ToString()}).ToArray();
+                { Id= i.Id,
+                    Name = i.Name,
+                    GeoLong = i.Longitude.ToString(),
+                    GeoLat = i.Latitude.ToString()}).ToArray();
             return Json(geodata, JsonRequestBehavior.AllowGet);
         }
 
         public class Geodata
         {
-            public string ID;
+            public int Id;
             public string Name;
             public string GeoLong;
             public string GeoLat;
