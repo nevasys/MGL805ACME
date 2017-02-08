@@ -336,7 +336,7 @@ __pycache__/
 *.pdb
 *.Cache
 *.config
-bin/
+#wwwroot\**\bin\
 
 /build/
 *.suo
