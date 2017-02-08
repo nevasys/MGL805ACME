@@ -127,6 +127,12 @@ artifacts/
 
 **/bin/
 **\bin\
+**/obj/
+**\obj\
+**/obj/debug/
+**\obj\debug\
+**/.vs/config/
+**\.vs\config\
 
 # Chutzpah Test files
 _Chutzpah*
