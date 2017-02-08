@@ -122,8 +122,7 @@ artifacts/
 *.svclog
 *.scc
 
-bin/
-bin\
+**/bin/
 
 # Chutzpah Test files
 _Chutzpah*
