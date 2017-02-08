@@ -23,6 +23,9 @@ namespace CarRental.Models
         public DbSet<Car> Cars { get; set; }
         public DbSet<Agency> Agencies { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<FAQ> FAQs { get; set; }
+        public DbSet<CarInventory> CarInventories { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

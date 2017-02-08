@@ -36,7 +36,7 @@
                     <li>@Html.ActionLink("Maison", "Index", "Home")</li>
 @if (User.IsInRole("Admin"))
 {
-                    <li>@Html.ActionLink("Voitures", "Index", "Cars")</li>
+                    <li>@Html.ActionLink("Modèles", "Index", "Cars")</li>
 }
 @if (User.IsInRole("Admin") || User.IsInRole("Agence"))
 {

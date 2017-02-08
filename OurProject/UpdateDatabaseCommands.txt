@@ -1,5 +1,9 @@
 
 Add-Migration AddCarsTable
 Add-Migration AddAgenciesTable
+Add-Migration AddClientsTable
+Add-Migration AddCarInventoriesTable
+Add-Migration AddFAQsTable
+Add-Migration AddReservationsTable
 
 Update-Database

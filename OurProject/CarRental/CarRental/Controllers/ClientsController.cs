@@ -71,6 +71,7 @@ namespace CarRental.Controllers
             clientInDb.CreatedBy = client.CreatedBy;
             clientInDb.CreatedOn = client.CreatedOn;
             clientInDb.ModifiedBy = client.ModifiedBy;
+
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index");

@@ -109,6 +109,12 @@ namespace CarRental.Controllers
             agencyInDb.StreetName = agency.StreetName;
             agencyInDb.Suite = agency.Suite;
             agencyInDb.TelephoneNumber = agency.TelephoneNumber;
+            agencyInDb.IsActive = agency.IsActive;
+            agencyInDb.CreatedBy = agency.CreatedBy;
+            agencyInDb.CreatedOn = agency.CreatedOn;
+            agencyInDb.ModifiedBy = agencyInDb.ModifiedBy;
+            agencyInDb.ModifiedOn = agency.ModifiedOn;
+
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index");

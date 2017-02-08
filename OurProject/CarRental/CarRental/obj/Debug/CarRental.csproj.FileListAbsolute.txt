@@ -91,7 +91,7 @@ C:\_localfiles\_ETS\MGL805\Website\OurProject\CarRental\CarRental\bin\Views\Home
 C:\_localfiles\_ETS\MGL805\Website\OurProject\CarRental\CarRental\bin\Views\Home\Index.cshtml
 C:\_localfiles\_ETS\MGL805\Website\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddCarsTable4.resources
 C:\_localfiles\_ETS\MGL805\Website\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddAgenciesTable1.resources
-C:\_localfiles\_ETS\MGL805\Website\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddClientsTable.resources
+C:\_localfiles\_ETS\MGL805\Website\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddClientsTable5.resources
 C:\_localfiles\_ETS\MGL805\Website\OurProject\CarRental\CarRental\obj\Debug\CarRental.csprojResolveAssemblyReference.cache
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\bin\ApplicationInsights.config
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\bin\roslyn\csc.exe
@@ -175,7 +175,6 @@ C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\bin\
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\bin\Microsoft.Owin.Security.Google.xml
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\bin\Microsoft.Owin.Security.Twitter.xml
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.csprojResolveAssemblyReference.cache
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.InitialCreate.resources
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddCarsTable.resources
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddCarsTable1.resources
@@ -185,6 +184,9 @@ C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddCarsTable4.resources
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddAgenciesTable1.resources
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddClientsTable.resources
+C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddCarInventoriesTable.resources
+C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddAgenciesTable2.resources
+C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.AddcarsTable5.resources
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.csproj.GenerateResource.Cache
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.dll
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.pdb

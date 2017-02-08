@@ -74,6 +74,12 @@ namespace CarRental.Controllers
             carInDb.HorsePower = car.HorsePower;
             carInDb.NumberOfDoors = car.NumberOfDoors;
             carInDb.DailyRate = car.DailyRate;
+            carInDb.IsActive = car.IsActive;
+            carInDb.CreatedBy = car.CreatedBy;
+            carInDb.CreatedOn = car.CreatedOn;
+            carInDb.ModifiedBy = car.ModifiedBy;
+            carInDb.ModifiedOn = car.ModifiedOn;
+
             _dbContext.SaveChanges();
 
             return RedirectToAction("Index");
