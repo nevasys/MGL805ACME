@@ -46,6 +46,10 @@
 {
                     <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
 }
+@if (User.IsInRole("Admin") || User.IsInRole("Agence"))
+{
+    <li>@Html.ActionLink("Inventaires", "Index", "CarInventories")</li>
+}
                     <li>@Html.ActionLink("Au sujet de nous", "About", "Home")</li>
                     <li>@Html.ActionLink("Contactez nous", "Contact", "Home")</li>
                     <li>@Html.ActionLink("FAQ", "Index", "FAQs")</li>

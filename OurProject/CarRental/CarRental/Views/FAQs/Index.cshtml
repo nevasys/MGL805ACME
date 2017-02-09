@@ -17,8 +17,12 @@
             <strong>@faq.Question</strong>
             <br />
             @faq.Answer
-            @Html.ActionLink("Editer", "Edit", new { id = faq.Id }) |
-            @Html.ActionLink("Effacer", "Delete", new { id = faq.Id })
+            @if (User.IsInRole("Admin") || User.IsInRole("Agence"))
+            {
+            @Html.ActionLink("Editer", "Edit", new { id = faq.Id }) @Html.Raw(" ")
+            @Html.ActionLink("Effacer", "Delete", new { id = faq.Id });
+            }     
+            
         </li>
     }
 </ul>

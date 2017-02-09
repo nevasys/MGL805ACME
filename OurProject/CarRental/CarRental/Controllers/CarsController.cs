@@ -77,6 +77,7 @@ namespace CarRental.Controllers
             carInDb.Type = car.Type;
             carInDb.HorsePower = car.HorsePower;
             carInDb.NumberOfDoors = car.NumberOfDoors;
+            carInDb.NumberOfPassenger = car.NumberOfPassenger;
             carInDb.DailyRate = car.DailyRate;
             carInDb.IsActive = car.IsActive;
             carInDb.CreatedBy = car.CreatedBy != string.Empty ? car.CreatedBy : User.Identity.Name;

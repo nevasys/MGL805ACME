@@ -27,6 +27,26 @@ namespace CarRental.Controllers
 
         public ActionResult New()
         {
+            IEnumerable<SelectListItem> agencyitems =
+               _dbContext.Agencies.Where(x => x.IsActive == true).Select(d =>
+               new SelectListItem
+               {
+                   Value = d.Id.ToString(),
+                   Text = d.Name + " " + d.Division + " " + d.CivicNumber + " " + d.StreetName + " " + d.Province + " " + d.PostalCode
+               });
+
+            ViewBag.AgencyId = agencyitems;
+
+            IEnumerable<SelectListItem> caritems =
+               _dbContext.Cars.Where(x => x.IsActive == true).Select(d =>
+               new SelectListItem
+               {
+                   Value = d.Id.ToString(),
+                   Text = d.Brand + " " + d.model + " " + d.Type + " " + d.NumberOfDoors + " portes " + d.NumberOfPassenger + " passagers " + d.HorsePower + "hp " + d.DailyRate + "$"
+               });
+
+            ViewBag.CarId = caritems;
+
             return View();
         }
 
@@ -43,12 +63,58 @@ namespace CarRental.Controllers
 
         public ActionResult Edit(int id)
         {
+            //IEnumerable<SelectListItem> agencyitems =
+            //   _dbContext.Agencies.Where(x => x.IsActive == true).Select(d =>
+            //   new SelectListItem
+            //   {
+            //       Value = d.Id.ToString(),
+            //       Text = d.Name + " " + d.Division + " " + d.CivicNumber + " " + d.StreetName + " " + d.Province + " " + d.PostalCode
+            //   });
+
+            //ViewBag.AgencyId = agencyitems;
+
+            //IEnumerable<SelectListItem> caritems =
+            //   _dbContext.Cars.Where(x => x.IsActive == true).Select(d =>
+            //   new SelectListItem
+            //   {
+            //       Value = d.Id.ToString(),
+            //       Text = d.Brand + " " + d.model + " " + d.Type + " " + d.NumberOfDoors + " portes " + d.NumberOfPassenger + " passagers " + d.HorsePower + "hp " + d.DailyRate + "$"
+            //   });
+
+            //ViewBag.CarId = caritems;
             var carinventory = _dbContext.CarInventories.SingleOrDefault(v => v.Id == id);
 
             if (carinventory == null)
                 return HttpNotFound();
 
+            PopulateAgenciesDropDownList(carinventory.AgencyId);
+            PopulateCarsDropDownList(carinventory.CarId);
+
             return View(carinventory);
+        }
+
+        private void PopulateAgenciesDropDownList(object selectedAgency = null)
+        {
+            IEnumerable<SelectListItem> agencyitems =
+               _dbContext.Agencies.Where(x => x.IsActive == true).Select(d =>
+               new SelectListItem
+               {
+                   Value = d.Id.ToString(),
+                   Text = d.Name + " " + d.Division + " " + d.CivicNumber + " " + d.StreetName + " " + d.Province + " " + d.PostalCode
+               });
+            ViewBag.AgenciesBag = new SelectList(agencyitems, "Value", "Text", selectedAgency);
+        }
+
+        private void PopulateCarsDropDownList(object selectedCar = null)
+        {
+            IEnumerable<SelectListItem> caritems =
+               _dbContext.Cars.Where(x => x.IsActive == true).Select(d =>
+               new SelectListItem
+               {
+                   Value = d.Id.ToString(),
+                   Text = d.Brand + " " + d.model + " " + d.Type + " " + d.NumberOfDoors + " portes " + d.NumberOfPassenger + " passagers " + d.HorsePower + "hp " + d.DailyRate + "$"
+               });
+            ViewBag.CarsBag = new SelectList(caritems, "Value", "Text", selectedCar);
         }
 
         [HttpPost]

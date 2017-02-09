@@ -385,10 +385,14 @@
     <Content Include="Views\FAQs\_faqForm.cshtml" />
     <Content Include="Views\FAQs\Edit.cshtml" />
     <Content Include="Views\FAQs\Delete.cshtml" />
+    <Content Include="Views\CarInventories\Index.cshtml" />
+    <Content Include="Views\CarInventories\New.cshtml" />
+    <Content Include="Views\CarInventories\_carinventoryForm.cshtml" />
+    <Content Include="Views\CarInventories\Edit.cshtml" />
+    <Content Include="Views\CarInventories\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CarInventories\" />
     <Folder Include="Views\Reservations\" />
   </ItemGroup>
   <ItemGroup>

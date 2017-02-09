@@ -30,6 +30,12 @@
 </div>
 
 <div class="form-group">
+    @*@Html.LabelFor(m => m.NumberOfDoors)*@
+    <p><strong>Nombre de passagers</strong></p>
+    @Html.EnumDropDownListFor(m => m.NumberOfPassenger, new { @class = "form-control" })
+</div>
+
+<div class="form-group">
     @*@Html.LabelFor(m => m.HorsePower)*@
     <p><strong>Puissance (Hp)</strong></p>
     @Html.TextBoxFor(m => m.HorsePower, "{0:#}")
