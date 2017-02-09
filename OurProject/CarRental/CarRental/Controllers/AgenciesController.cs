@@ -71,6 +71,10 @@ namespace CarRental.Controllers
 
         public ActionResult Add(Agency agency)
         {
+            agency.CreatedBy = User.Identity.Name;
+            agency.CreatedOn = DateTime.Now;
+            agency.IsActive = true;
+
             _dbContext.Agencies.Add(agency);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
@@ -110,10 +114,10 @@ namespace CarRental.Controllers
             agencyInDb.Suite = agency.Suite;
             agencyInDb.TelephoneNumber = agency.TelephoneNumber;
             agencyInDb.IsActive = agency.IsActive;
-            agencyInDb.CreatedBy = agency.CreatedBy;
-            agencyInDb.CreatedOn = agency.CreatedOn;
-            agencyInDb.ModifiedBy = agencyInDb.ModifiedBy;
-            agencyInDb.ModifiedOn = agency.ModifiedOn;
+            agencyInDb.CreatedBy = agency.CreatedBy != string.Empty ? agency.CreatedBy : User.Identity.Name;
+            agencyInDb.CreatedOn = agency.CreatedOn != DateTime.MinValue ? agency.CreatedOn : DateTime.Now;
+            agencyInDb.ModifiedBy = User.Identity.Name;
+            agencyInDb.ModifiedOn = DateTime.Now;
 
             _dbContext.SaveChanges();
 

@@ -32,6 +32,10 @@ namespace CarRental.Controllers
 
         public ActionResult Add(CarInventory carinventory)
         {
+            carinventory.CreatedBy = User.Identity.Name;
+            carinventory.CreatedOn = DateTime.Now;
+            carinventory.IsActive = true;
+
             _dbContext.CarInventories.Add(carinventory);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
@@ -67,10 +71,10 @@ namespace CarRental.Controllers
             carinventoryInDb.SerialNumber = carinventory.SerialNumber;
             carinventoryInDb.year = carinventory.year;
             carinventoryInDb.IsActive = carinventory.IsActive;
-            carinventoryInDb.CreatedBy = carinventory.CreatedBy;
-            carinventoryInDb.CreatedOn = carinventory.CreatedOn;
-            carinventoryInDb.ModifiedBy = carinventory.ModifiedBy;
-            carinventoryInDb.ModifiedOn = carinventory.ModifiedOn;
+            carinventoryInDb.CreatedBy = carinventory.CreatedBy != string.Empty ? carinventory.CreatedBy : User.Identity.Name;
+            carinventoryInDb.CreatedOn = carinventory.CreatedOn != DateTime.MinValue ? carinventory.CreatedOn : DateTime.Now;
+            carinventoryInDb.ModifiedBy = User.Identity.Name;
+            carinventoryInDb.ModifiedOn = DateTime.Now;
 
             _dbContext.SaveChanges();
 

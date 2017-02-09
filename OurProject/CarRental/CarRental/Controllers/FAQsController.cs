@@ -20,7 +20,7 @@ namespace CarRental.Controllers
         public ActionResult Index()
         {
 
-            var faqs = _dbContext.Reservations.ToList();
+            var faqs = _dbContext.FAQs.ToList();
 
             return View(faqs);
         }
@@ -33,6 +33,9 @@ namespace CarRental.Controllers
 
         public ActionResult Add(FAQ faq)
         {
+            faq.CreatedBy = User.Identity.Name;
+            faq.CreatedOn = DateTime.Now;
+            faq.IsActive = true;
             _dbContext.FAQs.Add(faq);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
@@ -59,10 +62,10 @@ namespace CarRental.Controllers
             faqInDb.Question = faq.Question;
             faqInDb.Answer = faq.Answer;
             faqInDb.IsActive = faq.IsActive;
-            faqInDb.CreatedBy = faq.CreatedBy;
-            faqInDb.CreatedOn = faq.CreatedOn;
-            faqInDb.ModifiedBy = faq.ModifiedBy;
-            faqInDb.ModifiedOn = faq.ModifiedOn;
+            faqInDb.CreatedBy = faq.CreatedBy != string.Empty ? faq.CreatedBy : User.Identity.Name;
+            faqInDb.CreatedOn = faq.CreatedOn != DateTime.MinValue ? faq.CreatedOn : DateTime.Now;
+            faqInDb.ModifiedBy = User.Identity.Name;
+            faqInDb.ModifiedOn =  DateTime.Now;
 
             _dbContext.SaveChanges();
 
@@ -71,7 +74,7 @@ namespace CarRental.Controllers
 
         public ActionResult Delete(int id)
         {
-            var faq = _dbContext.Reservations.SingleOrDefault(v => v.Id == id);
+            var faq = _dbContext.FAQs.SingleOrDefault(v => v.Id == id);
 
             if (faq == null)
                 return HttpNotFound();
@@ -82,10 +85,10 @@ namespace CarRental.Controllers
         [HttpPost]
         public ActionResult DoDelete(int id)
         {
-            var faq = _dbContext.Reservations.SingleOrDefault(v => v.Id == id);
+            var faq = _dbContext.FAQs.SingleOrDefault(v => v.Id == id);
             if (faq == null)
                 return HttpNotFound();
-            _dbContext.Reservations.Remove(faq);
+            _dbContext.FAQs.Remove(faq);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }

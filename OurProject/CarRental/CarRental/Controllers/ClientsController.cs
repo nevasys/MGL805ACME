@@ -41,6 +41,10 @@ namespace CarRental.Controllers
 
         public ActionResult Add(Client client)
         {
+            client.CreatedBy = User.Identity.Name;
+            client.CreatedOn = DateTime.Now;
+            client.IsActive = true;
+
             _dbContext.Clients.Add(client);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
@@ -67,10 +71,10 @@ namespace CarRental.Controllers
             clientInDb.BirthDate = client.BirthDate;
             clientInDb.DriverLicenseNUmber = client.DriverLicenseNUmber;
             clientInDb.HasValidDriverLicense = client.HasValidDriverLicense;
-            clientInDb.IsActive = client.IsActive;
-            clientInDb.CreatedBy = client.CreatedBy;
-            clientInDb.CreatedOn = client.CreatedOn;
-            clientInDb.ModifiedBy = client.ModifiedBy;
+            clientInDb.CreatedBy = client.CreatedBy != string.Empty ? client.CreatedBy : User.Identity.Name;
+            clientInDb.CreatedOn = client.CreatedOn != DateTime.MinValue ? client.CreatedOn : DateTime.Now;
+            clientInDb.ModifiedBy = User.Identity.Name;
+            clientInDb.ModifiedOn = DateTime.Now;
 
             _dbContext.SaveChanges();
 

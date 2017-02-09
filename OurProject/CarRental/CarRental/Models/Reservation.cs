@@ -9,6 +9,9 @@ namespace CarRental.Models
 {
     public class Reservation
     {
+        private DateTime _createdOn = DateTime.Now;
+        private DateTime _modifiedOn = DateTime.Now;
+
         [Key]
         public int Id { get; set; }
         [ForeignKey("CarInventory")]
@@ -27,9 +30,17 @@ namespace CarRental.Models
         public float Discount { get; set; }
         public reservationStatus ReservationStatus { get; set; }
         public bool IsActive { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn
+        {
+            get { return _createdOn; }
+            set { _createdOn = value; }
+        }
         public string CreatedBy { get; set; }
-        public DateTime ModifiedOn { get; set; }
+        public DateTime ModifiedOn
+        {
+            get { return _modifiedOn; }
+            set { _modifiedOn = value; }
+        }
         public string ModifiedBy { get; set; }
     }
 

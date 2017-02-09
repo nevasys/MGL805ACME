@@ -8,7 +8,10 @@ namespace CarRental.Models
 {
          public class Agency
         {
-            [Key]
+        private DateTime _createdOn = DateTime.Now;
+        private DateTime _modifiedOn = DateTime.Now;
+
+        [Key]
             public int Id { get; set; }
             public string Name { get; set; }
             public string Division { get; set; }
@@ -26,9 +29,17 @@ namespace CarRental.Models
             public float Latitude { get; set; }
             public float Longitude { get; set; }
             public Boolean IsActive { get; set; }
-            public DateTime CreatedOn { get; set; }
+            public DateTime CreatedOn
+            {
+                get { return _createdOn; }
+                set { _createdOn = value; }
+            }
             public string CreatedBy { get; set; }
-            public DateTime ModifiedOn { get; set; }
+            public DateTime ModifiedOn
+            {
+                get { return _modifiedOn; }
+                set { _modifiedOn = value; }
+            }
             public string ModifiedBy { get; set; }
 
     }

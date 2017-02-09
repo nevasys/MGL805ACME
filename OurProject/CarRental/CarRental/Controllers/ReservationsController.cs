@@ -34,6 +34,10 @@ namespace CarRental.Controllers
 
         public ActionResult Add(Reservation reservation)
         {
+            reservation.CreatedBy = User.Identity.Name;
+            reservation.CreatedOn = DateTime.Now;
+            reservation.IsActive = true;
+
             _dbContext.Reservations.Add(reservation);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
@@ -69,10 +73,10 @@ namespace CarRental.Controllers
             reservationInDb.ReservationStatus = reservation.ReservationStatus;
             reservationInDb.Tax = reservation.Tax;
             reservationInDb.IsActive = reservation.IsActive;
-            reservationInDb.CreatedBy = reservation.CreatedBy;
-            reservationInDb.CreatedOn = reservation.CreatedOn;
-            reservationInDb.ModifiedBy = reservation.ModifiedBy;
-            reservationInDb.ModifiedOn = reservation.ModifiedOn;
+            reservationInDb.CreatedBy = reservation.CreatedBy != string.Empty ? reservation.CreatedBy : User.Identity.Name;
+            reservationInDb.CreatedOn = reservation.CreatedOn != DateTime.MinValue ? reservation.CreatedOn : DateTime.Now;
+            reservationInDb.ModifiedBy = User.Identity.Name;
+            reservationInDb.ModifiedOn = DateTime.Now;
 
             _dbContext.SaveChanges();
 

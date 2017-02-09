@@ -44,6 +44,10 @@ namespace CarRental.Controllers
 
         public ActionResult Add(Car car)
         {
+            car.CreatedBy = User.Identity.Name;
+            car.CreatedOn = DateTime.Now;
+            car.IsActive = true;
+
             _dbContext.Cars.Add(car);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
@@ -75,10 +79,10 @@ namespace CarRental.Controllers
             carInDb.NumberOfDoors = car.NumberOfDoors;
             carInDb.DailyRate = car.DailyRate;
             carInDb.IsActive = car.IsActive;
-            carInDb.CreatedBy = car.CreatedBy;
-            carInDb.CreatedOn = car.CreatedOn;
-            carInDb.ModifiedBy = car.ModifiedBy;
-            carInDb.ModifiedOn = car.ModifiedOn;
+            carInDb.CreatedBy = car.CreatedBy != string.Empty ? car.CreatedBy : User.Identity.Name;
+            carInDb.CreatedOn = car.CreatedOn != DateTime.MinValue ? car.CreatedOn : DateTime.Now;
+            carInDb.ModifiedBy = User.Identity.Name;
+            carInDb.ModifiedOn = DateTime.Now;
 
             _dbContext.SaveChanges();
 

@@ -9,6 +9,9 @@ namespace CarRental.Models
 {
     public class Client
     {
+        private DateTime _createdOn = DateTime.Now;
+        private DateTime _modifiedOn = DateTime.Now;
+
         [Key]
         public int Id { get; set; }
         [ForeignKey("User")]
@@ -18,9 +21,17 @@ namespace CarRental.Models
         public Boolean HasValidDriverLicense { get; set; }
         public string DriverLicenseNUmber { get; set; }
         public Boolean IsActive { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn
+        {
+            get { return _createdOn; }
+            set { _createdOn = value; }
+        }
         public string CreatedBy { get; set; }
-        public DateTime ModifiedOn { get; set; }
+        public DateTime ModifiedOn
+        {
+            get { return _modifiedOn; }
+            set { _modifiedOn = value; }
+        }
         public string ModifiedBy { get; set; }
 
 
