@@ -390,10 +390,14 @@
     <Content Include="Views\CarInventories\_carinventoryForm.cshtml" />
     <Content Include="Views\CarInventories\Edit.cshtml" />
     <Content Include="Views\CarInventories\Delete.cshtml" />
+    <Content Include="Views\Reservations\Index.cshtml" />
+    <Content Include="Views\Reservations\New.cshtml" />
+    <Content Include="Views\Reservations\_reservationForm.cshtml" />
+    <Content Include="Views\Reservations\Edit.cshtml" />
+    <Content Include="Views\Reservations\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Reservations\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

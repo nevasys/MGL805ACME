@@ -29,6 +29,26 @@ namespace CarRental.Controllers
 
         public ActionResult New()
         {
+            IEnumerable<SelectListItem> clientitems =
+               _dbContext.Clients.Where(x => x.IsActive == true).Select(d =>
+               new SelectListItem
+               {
+                   Value = d.Id.ToString(),
+                   Text = d.User.UserName + " " + d.User.Email + " " + d.HasValidDriverLicense + " " + d.DriverLicenseNUmber 
+               });
+
+            ViewBag.ClientId = clientitems;
+
+            IEnumerable<SelectListItem> inventoryitems =
+               _dbContext.CarInventories.Where(x => x.IsActive == true).Select(d =>
+               new SelectListItem
+               {
+                   Value = d.Id.ToString(),
+                   Text = d.Agency.Name + d.Agency.Division + d.Car.Brand + " " + d.Car.model + " " + d.Car.Type + " " + d.Car.NumberOfDoors + " portes " + d.Car.NumberOfPassenger + " passagers " + d.Car.HorsePower + "hp " + d.Car.DailyRate + "$"
+               });
+
+            ViewBag.CarInventoryId = inventoryitems;
+
             return View();
         }
 
@@ -50,7 +70,34 @@ namespace CarRental.Controllers
             if (reservation == null)
                 return HttpNotFound();
 
+            PopulateClientsDropDownList(reservation.ClientId);
+            PopulateCarInventoriesDropDownList(reservation.CarInventoryId);
+
             return View(reservation);
+        }
+
+        private void PopulateClientsDropDownList(object selectedAgency = null)
+        {
+            IEnumerable<SelectListItem> clientitems =
+               _dbContext.Clients.Where(x => x.IsActive == true).Select(d =>
+               new SelectListItem
+               {
+                   Value = d.Id.ToString(),
+                   Text = d.User.UserName + " " + d.User.Email + " " + d.HasValidDriverLicense + " " + d.DriverLicenseNUmber
+               });
+            ViewBag.ClientsBag = new SelectList(clientitems, "Value", "Text", selectedAgency);
+        }
+
+        private void PopulateCarInventoriesDropDownList(object selectedCar = null)
+        {
+            IEnumerable<SelectListItem> carinventoryitems =
+               _dbContext.CarInventories.Where(x => x.IsActive == true).Select(d =>
+               new SelectListItem
+               {
+                   Value = d.Id.ToString(),
+                   Text = d.Agency.Name + d.Agency.Division + d.Car.Brand + " " + d.Car.model + " " + d.Car.Type + " " + d.Car.NumberOfDoors + " portes " + d.Car.NumberOfPassenger + " passagers " + d.Car.HorsePower + "hp " + d.Car.DailyRate + "$"
+               });
+            ViewBag.carInventoriesBag = new SelectList(carinventoryitems, "Value", "Text", selectedCar);
         }
 
         [HttpPost]

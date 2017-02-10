@@ -33,7 +33,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Maison", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Maison", "Index", "Home")</li>*@
 @if (User.IsInRole("Admin"))
 {
                     <li>@Html.ActionLink("Modèles", "Index", "Cars")</li>
@@ -41,15 +41,10 @@
 @if (User.IsInRole("Admin") || User.IsInRole("Agence"))
 {
                     <li>@Html.ActionLink("Agences", "Index", "Agencies")</li>
-}
-@if (User.IsInRole("Admin") || User.IsInRole("Agence"))
-{
                     <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
+                    <li>@Html.ActionLink("Inventaires", "Index", "CarInventories")</li>
 }
-@if (User.IsInRole("Admin") || User.IsInRole("Agence"))
-{
-    <li>@Html.ActionLink("Inventaires", "Index", "CarInventories")</li>
-}
+                    <li>@Html.ActionLink("Reservations", "Index", "Reservations")</li>
                     <li>@Html.ActionLink("Au sujet de nous", "About", "Home")</li>
                     <li>@Html.ActionLink("Contactez nous", "Contact", "Home")</li>
                     <li>@Html.ActionLink("FAQ", "Index", "FAQs")</li>
