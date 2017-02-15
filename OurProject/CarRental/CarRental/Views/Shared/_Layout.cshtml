@@ -41,9 +41,9 @@
 @if (User.IsInRole("Admin") || User.IsInRole("Agence"))
 {
                     <li>@Html.ActionLink("Agences", "Index", "Agencies")</li>
-                    <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
                     <li>@Html.ActionLink("Inventaires", "Index", "CarInventories")</li>
 }
+                    <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
                     <li>@Html.ActionLink("Reservations", "Index", "Reservations")</li>
                     <li>@Html.ActionLink("Au sujet de nous", "About", "Home")</li>
                     <li>@Html.ActionLink("Contactez nous", "Contact", "Home")</li>

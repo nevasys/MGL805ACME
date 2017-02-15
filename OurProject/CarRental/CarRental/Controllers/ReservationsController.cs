@@ -1,4 +1,5 @@
 ﻿using CarRental.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,16 @@ namespace CarRental.Controllers
         public ActionResult Index()
         {
 
-            var reservations = _dbContext.Reservations.ToList();
+            if (!User.Identity.IsAuthenticated)
+            {
+                // SVP enregistrez-vous sur le site BazooPasCher pour pouvoir réserver une voiture!
+                return new HttpUnauthorizedResult();
+            }
+            string MyUserId = User.Identity.GetUserId();
+            bool IsClient = User.IsInRole("Client");
+            bool IsAgency= User.IsInRole("Agence");
+            var clients = _dbContext.Clients.Where(x => (IsClient == true) ? x.UserId.CompareTo(MyUserId) == 0 : true).FirstOrDefault();
+            var reservations = _dbContext.Reservations.Where(x => (IsClient == true) ? x.ClientId == clients.Id : true).ToList();
 
             return View(reservations);
         }
@@ -29,8 +39,13 @@ namespace CarRental.Controllers
 
         public ActionResult New()
         {
+            string MyUserId = User.Identity.GetUserId();
+            bool IsClient = User.IsInRole("Client");
+            bool IsAgency = User.IsInRole("Agence");
+            var clients = _dbContext.Clients.Where(x => (IsClient == true) ? x.UserId.CompareTo(MyUserId) == 0 : true).FirstOrDefault();
+
             IEnumerable<SelectListItem> clientitems =
-               _dbContext.Clients.Where(x => x.IsActive == true).Select(d =>
+               _dbContext.Clients.Where(x => x.IsActive == true && x.Id == clients.Id).Select(d =>
                new SelectListItem
                {
                    Value = d.Id.ToString(),
@@ -78,8 +93,13 @@ namespace CarRental.Controllers
 
         private void PopulateClientsDropDownList(object selectedAgency = null)
         {
+            string MyUserId = User.Identity.GetUserId();
+            bool IsClient = User.IsInRole("Client");
+            bool IsAgency = User.IsInRole("Agence");
+            var clients = _dbContext.Clients.Where(x => (IsClient == true) ? x.UserId.CompareTo(MyUserId) == 0 : true).FirstOrDefault();
+
             IEnumerable<SelectListItem> clientitems =
-               _dbContext.Clients.Where(x => x.IsActive == true).Select(d =>
+               _dbContext.Clients.Where(x => x.IsActive == true && x.Id == clients.Id).Select(d =>
                new SelectListItem
                {
                    Value = d.Id.ToString(),
