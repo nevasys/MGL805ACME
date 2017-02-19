@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -73,6 +75,9 @@ namespace CarRental.Controllers
             reservation.CreatedOn = DateTime.Now;
             reservation.IsActive = true;
 
+            calcTotalAmount(reservation);
+            reservation.AgencyId = FindAgencyId(reservation.CarInventoryId);
+
             _dbContext.Reservations.Add(reservation);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
@@ -128,8 +133,11 @@ namespace CarRental.Controllers
             if (reservationInDb == null)
                 return HttpNotFound();
 
+            calcTotalAmount(reservation);
+
             reservationInDb.ClientId = reservation.ClientId;
             reservationInDb.CarInventoryId = reservation.CarInventoryId;
+            reservationInDb.AgencyId = FindAgencyId(reservation.CarInventoryId);
             reservationInDb.DailyRate = reservation.DailyRate;
             reservationInDb.DateEnd = reservation.DateEnd;
             reservationInDb.DateStart = reservation.DateStart;
@@ -138,7 +146,10 @@ namespace CarRental.Controllers
             reservationInDb.OdometerEnd = reservation.OdometerEnd;
             reservationInDb.OdometerStart = reservation.OdometerStart;
             reservationInDb.ReservationStatus = reservation.ReservationStatus;
-            reservationInDb.Tax = reservation.Tax;
+            reservationInDb.ProvincialTax = reservation.ProvincialTax;
+            reservationInDb.FederalTax = reservation.FederalTax;
+            reservationInDb.Amount = reservation.Amount;
+            reservationInDb.TotalAmount = reservation.TotalAmount;
             reservationInDb.IsActive = reservation.IsActive;
             reservationInDb.CreatedBy = reservation.CreatedBy != string.Empty ? reservation.CreatedBy : User.Identity.Name;
             reservationInDb.CreatedOn = reservation.CreatedOn != DateTime.MinValue ? reservation.CreatedOn : DateTime.Now;
@@ -150,6 +161,29 @@ namespace CarRental.Controllers
             return RedirectToAction("Index");
         }
 
+        private void calcTotalAmount(Reservation reservation)
+        {
+            // Amount
+            TimeSpan difference = reservation.DateEnd - reservation.DateStart;
+            var days = difference.TotalDays;
+            reservation.Amount = (float)days * reservation.DailyRate;
+            reservation.Amount = (float)Math.Round(reservation.Amount, 2);
+
+            // Tax
+            reservation.FederalTax = (float)Math.Round(reservation.Amount * float.Parse(ConfigurationManager.AppSettings["FederalTax"], CultureInfo.InvariantCulture.NumberFormat), 2);
+            reservation.ProvincialTax = (float)Math.Round(reservation.Amount * float.Parse(ConfigurationManager.AppSettings["ProvincialTax"], CultureInfo.InvariantCulture.NumberFormat), 2);
+            reservation.TotalAmount = reservation.Amount + reservation.FederalTax + reservation.ProvincialTax;
+        }
+
+        private int FindAgencyId(int carInventoryId)
+        {
+            var carinventory = _dbContext.CarInventories.SingleOrDefault(v => v.Id == carInventoryId);
+
+            if (carinventory == null)
+                return -1;
+
+            return carinventory.AgencyId;
+        }
         public ActionResult Delete(int id)
         {
             var reservation = _dbContext.Reservations.SingleOrDefault(v => v.Id == id);

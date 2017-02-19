@@ -20,13 +20,19 @@ namespace CarRental.Models
         [ForeignKey("Client")]
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
+        [ForeignKey("Agency")]
+        public int AgencyId { get; set; }
+        public virtual Agency Agency { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
         public int OdometerStart { get; set; }
         public int OdometerEnd { get; set; }
         public int Days { get; set; }
         public float DailyRate { get; set; }
-        public float Tax { get; set; }
+        public float ProvincialTax { get; set; }
+        public float FederalTax { get; set; }
+        public float Amount { get; set; }
+        public float TotalAmount { get; set; }
         public float Discount { get; set; }
         public reservationStatus ReservationStatus { get; set; }
         public bool IsActive { get; set; }

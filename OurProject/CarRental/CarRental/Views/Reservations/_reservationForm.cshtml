@@ -76,8 +76,26 @@
 
 <div class="form-group">
     @*@Html.LabelFor(m => m.model)*@
-    <p><strong>Tax ($)</strong></p>
-    @Html.TextBoxFor(m => m.Tax, "{0:###.##}") $
+    <p><strong>Montant ($)</strong></p>
+    @Html.TextBoxFor(m => m.Amount, "{0:###.##}") $
+</div>
+
+<div class="form-group">
+    @*@Html.LabelFor(m => m.model)*@
+    <p><strong>Tax provincial ($)</strong></p>
+    @Html.TextBoxFor(m => m.ProvincialTax, "{0:###.##}") $
+</div>
+
+<div class="form-group">
+    @*@Html.LabelFor(m => m.model)*@
+    <p><strong>Tax Federal ($)</strong></p>
+    @Html.TextBoxFor(m => m.FederalTax, "{0:###.##}") $
+</div>
+
+<div class="form-group">
+    @*@Html.LabelFor(m => m.model)*@
+    <p><strong>Montant Total ($)</strong></p>
+    @Html.TextBoxFor(m => m.TotalAmount, "{0:###.##}") $
 </div>
 
 @*<div class="form-group">
