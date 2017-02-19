@@ -34,22 +34,31 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Maison", "Index", "Home")</li>*@
-@if (User.IsInRole("Admin"))
+
+@using CarRental.Common
+@if (User.IsInRole(Commun.GetUserRole(UserRole.ADMIN)))
 {
+                    <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
+                    <li>@Html.ActionLink("Reservations", "Index", "Reservations")</li>
                     <li>@Html.ActionLink("Modèles", "Index", "Cars")</li>
 }
-@if (User.IsInRole("Admin") || User.IsInRole("Agence"))
+@if (User.IsInRole(Commun.GetUserRole(UserRole.AGENCE)))
 {
-                    <li>@Html.ActionLink("Agences", "Index", "Agencies")</li>
                     <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
-                    <li>@Html.ActionLink("Inventaires", "Index", "CarInventories")</li>
-}
                     <li>@Html.ActionLink("Reservations", "Index", "Reservations")</li>
+}
+@if (User.IsInRole(Commun.GetUserRole(UserRole.CLIENT)))
+{
+                    <li>@Html.ActionLink("Reservations", "Index", "Reservations")</li>
+}
+
+                    <li>@Html.ActionLink("Agences", "Index", "Agencies")</li>
+                    <li>@Html.ActionLink("Voitures", "Index", "CarInventories")</li>
                     <li>@Html.ActionLink("Au sujet de nous", "About", "Home")</li>
                     <li>@Html.ActionLink("Contactez nous", "Contact", "Home")</li>
                     <li>@Html.ActionLink("FAQ", "Index", "FAQs")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @*Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
@@ -63,6 +72,6 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false) 
 </body>
 </html>
