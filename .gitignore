@@ -366,3 +366,4 @@ Version.cpp
 *.dll
 *.mdf
 *.pdb
+OurProject/CarRental/.vs/config/applicationhost.config
