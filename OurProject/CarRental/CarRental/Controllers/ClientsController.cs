@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CarRental.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace CarRental.Controllers
 {
@@ -23,12 +25,13 @@ namespace CarRental.Controllers
             {
                 return new HttpUnauthorizedResult();
             }
-            if (!User.IsInRole("Admin") && !User.IsInRole("Agence"))
-            {
-                return new HttpUnauthorizedResult();
-            }
-
-            var clients = _dbContext.Clients.ToList();
+            //if (!User.IsInRole("Admin") && !User.IsInRole("Agence"))
+            //{
+            //    return new HttpUnauthorizedResult();
+            //}
+            string MyUserId = User.Identity.GetUserId();
+            bool IsClient = User.IsInRole("Client");
+            var clients = _dbContext.Clients.Where(x => (IsClient == true) ? x.UserId.CompareTo(MyUserId) == 0 : true).ToList();
 
             return View(clients);
             
@@ -36,14 +39,38 @@ namespace CarRental.Controllers
 
         public ActionResult New()
         {
-            return View();
+
+            var client = new Client();
+            client.User = new ApplicationUser();
+
+            if (!User.IsInRole("Admin") && !User.IsInRole("Agence"))
+            {
+                // default role: client
+                IdentityUserRole iur = new IdentityUserRole();
+                iur.RoleId = "3";
+                client.User.Roles.Add(iur);
+            }
+            client.UserId = User.Identity.GetUserId();
+            client.User.UserName = User.Identity.GetUserName();
+            client.User.Email = User.Identity.GetUserName();
+            client.IsActive = true;
+            client.HasValidDriverLicense = true;
+            client.BirthDate = DateTime.Now;
+
+            return View(client);
         }
 
         public ActionResult Add(Client client)
         {
+            // Current user already created as aspnet user
+            client.User = null;
+
+            client.UserId = User.Identity.GetUserId();
             client.CreatedBy = User.Identity.Name;
             client.CreatedOn = DateTime.Now;
-            client.IsActive = true;
+            client.ModifiedBy = User.Identity.Name;
+            client.ModifiedOn = DateTime.Now;
+            //client.IsActive = true;
 
             _dbContext.Clients.Add(client);
             _dbContext.SaveChanges();

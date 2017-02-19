@@ -7,7 +7,10 @@
 <h2>Liste des FAQs</h2>
 
 <p>
+@if (User.IsInRole("Admin") || User.IsInRole("Agence"))
+{
     @Html.ActionLink("Ajouter une FAQ", "New")
+}
 </p>
 
 <ul>

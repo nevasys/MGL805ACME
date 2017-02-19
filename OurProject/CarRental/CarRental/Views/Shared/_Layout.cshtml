@@ -44,11 +44,18 @@
 }
 @if (User.IsInRole(Commun.GetUserRole(UserRole.AGENCE)))
 {
+<<<<<<< HEAD
                     <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
                     <li>@Html.ActionLink("Reservations", "Index", "Reservations")</li>
 }
 @if (User.IsInRole(Commun.GetUserRole(UserRole.CLIENT)))
 {
+=======
+                    <li>@Html.ActionLink("Agences", "Index", "Agencies")</li>
+                    <li>@Html.ActionLink("Inventaires", "Index", "CarInventories")</li>
+}
+                    <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
+>>>>>>> origin/master
                     <li>@Html.ActionLink("Reservations", "Index", "Reservations")</li>
 }
 

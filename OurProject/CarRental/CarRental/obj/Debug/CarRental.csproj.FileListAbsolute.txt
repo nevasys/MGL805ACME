@@ -191,3 +191,4 @@ C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.dll
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.pdb
 C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.csprojResolveAssemblyReference.cache
+C:\_localfiles\_ETS\MGL805\GitHub\MGL805ACME\OurProject\CarRental\CarRental\obj\Debug\CarRental.Migrations.Reservations.resources
