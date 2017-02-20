@@ -1,0 +1,19 @@
+﻿
+@model IEnumerable<CarRental.Models.CarInventory>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>show FindCars</h2>
+
+
+@foreach (var inventory in Model)
+{ 
+    <li>
+        @inventory.Agency.Name @inventory.Agency.Division @inventory.Agency.CivicNumber  @inventory.Agency.StreetName @inventory.Agency.Province @inventory.Agency.PostalCode @inventory.Car.Brand @inventory.Car.model @inventory.Odometer km @inventory.year @inventory.DailyRate $
+        @Html.ActionLink("Reserver", "Index", new { id = inventory.Id }) |
+    </li>
+}
+

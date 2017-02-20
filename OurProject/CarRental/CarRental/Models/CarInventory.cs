@@ -7,6 +7,14 @@ using System.Web;
 
 namespace CarRental.Models
 {
+    public class CarInventorySearch
+    {
+        [Required]
+        public string CarBrand { get; set; }
+        public string CarModele { get; set; }
+        public string CarType { get; set; }
+    }
+
     public class CarInventory
     {
         private DateTime _createdOn = DateTime.Now;

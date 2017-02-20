@@ -400,6 +400,8 @@
     <Content Include="Views\Reservations\_reservationForm.cshtml" />
     <Content Include="Views\Reservations\Edit.cshtml" />
     <Content Include="Views\Reservations\Delete.cshtml" />
+    <Content Include="Views\CarInventories\FindCars.cshtml" />
+    <Content Include="Views\CarInventories\ShowFindCars.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

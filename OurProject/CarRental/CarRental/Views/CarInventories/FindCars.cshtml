@@ -1,6 +1,6 @@
 ﻿
 
-@model CarRental.Models.CarInventory
+@model CarRental.Models.CarInventorySearch
 @{
     ViewBag.Title = "FindCars";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,27 +10,37 @@
 
 
 
-<div class="form-group">
-    <p><strong>Brand</strong></p>
-    @Html.TextBox("Car barnd","", "")
-        @*ViewBag.CarsBag as IEnumerable<SelectListItem>, String.Empty)
-    @Html.ValidationMessageFor(m => m.CarId)*@
-</div>
 
-<div class="form-group">
-    <p><strong>Modele</strong></p>
-    @Html.TextBox("Car model", "", "")
-    @*ViewBag.CarsBag as IEnumerable<SelectListItem>, String.Empty)
-        @Html.ValidationMessageFor(m => m.CarId)*@
-</div>
 
-<div class="form-group">
-    <p><strong>Type</strong></p>
-    @Html.TextBox("Car type", "", "")
-    @*ViewBag.CarsBag as IEnumerable<SelectListItem>, String.Empty)
-        @Html.ValidationMessageFor(m => m.CarId)*@
-</div>
+@using (Html.BeginForm("ShowFindCars", "CarInventories", FormMethod.Post))
+{
+    <div>
+        <p><strong>Brand</strong></p>
+        @Html.TextBoxFor(model => model.CarBrand)
+        @Html.ValidationMessageFor(model => model.CarBrand)
+        <p><strong></strong></p>
+    </div>
 
-<input type="submit" class="btn btn-primary" value="Find" />
+    <div>
+        <p><strong>Modele</strong></p>
+        @Html.TextBoxFor(model => model.CarModele)
+        @Html.ValidationMessageFor(model => model.CarModele)
+        <p><strong></strong></p>
+    </div>
+
+    <div>
+        <p><strong>Type</strong></p>
+        @Html.TextBoxFor(model => model.CarType)
+        @Html.ValidationMessageFor(model => model.CarType)
+        <p><strong></strong></p>
+    </div>
+    <div>
+        <p><strong></strong></p>
+        <button type="submit">ShowFindCars</button>
+    </div>
+
+}
+
+
 
 

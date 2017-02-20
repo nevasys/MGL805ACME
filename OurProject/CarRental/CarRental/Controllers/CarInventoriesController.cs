@@ -76,6 +76,30 @@ namespace CarRental.Controllers
             return View();
         }
 
+        
+        [HttpPost]
+        public ActionResult ShowFindCars (CarInventorySearch model)
+        {
+           
+            //if (ModelState.IsValid)
+            //{
+                var carinventories = _dbContext.CarInventories.Where(x => x.IsActive == true &&
+                                           x.IsReserved == false &&
+                                           (x.Car.Brand == model.CarBrand) &&
+                                           (x.Car.model == model.CarModele) &&
+                                           (x.Car.Type.ToString() == model.CarType)).ToList();
+
+                return View(carinventories);
+            //}
+            //else
+            //{
+       
+            //    return View();
+            //}
+           
+        }
+
+
         public ActionResult Add(CarInventory carinventory)
         {
             carinventory.CreatedBy = User.Identity.Name;
