@@ -50,6 +50,32 @@ namespace CarRental.Controllers
             return View();
         }
 
+        public ActionResult FindCars()
+        {
+            //IEnumerable<SelectListItem> agencyitems =
+            //   _dbContext.Agencies.Where(x => x.IsActive == true).Select(d =>
+            //   new SelectListItem
+            //   {
+            //       Value = d.Id.ToString(),
+            //       Text = d.Name + " " + d.Division + " " + d.CivicNumber + " " + d.StreetName + " " + d.Province + " " + d.PostalCode
+            //   });
+
+            //ViewBag.AgencyId = agencyitems;
+
+            //IEnumerable<SelectListItem> caritems =
+            //   _dbContext.CarInventories.Where(x => x.IsActive == true && x.IsReserved == false).Select(d =>
+            //   new SelectListItem
+            //   {
+            //       Value = d.Id.ToString(),
+            //       Text = d.year + " " + d.NavigationSystem + " " + d.MP3player + " " + d.DVDplayer 
+            //       + " portes " + d.DailyRate + " passagers " + d.Car + " carid " + d.CarId + "hp " + d.Agency + "$"
+            //   });
+
+            //ViewBag.CarId = caritems;
+
+            return View();
+        }
+
         public ActionResult Add(CarInventory carinventory)
         {
             carinventory.CreatedBy = User.Identity.Name;

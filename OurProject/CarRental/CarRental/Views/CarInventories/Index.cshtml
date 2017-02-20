@@ -6,12 +6,20 @@
 
 <h2>Liste des inventaires des agences</h2>
 
-<p>
-    @Html.ActionLink("Ajouter un voiture à une agence", "New")
-</p>
+
 
 <ul>
-    @foreach (var inventory in Model)
+
+@using CarRental.Common
+    @*for agencies and admin, the list*@
+@if (User.IsInRole(Commun.GetUserRole(UserRole.ADMIN)) || User.IsInRole(Commun.GetUserRole(UserRole.AGENCE)))
+{
+
+    <p>
+        @Html.ActionLink("Ajouter un voiture à une agence", "New")
+    </p>
+
+    foreach (var inventory in Model)
     {
         <li>
             @inventory.Agency.Name @inventory.Agency.Division @inventory.Agency.CivicNumber  @inventory.Agency.StreetName @inventory.Agency.Province @inventory.Agency.PostalCode @inventory.Car.Brand @inventory.Car.model @inventory.Odometer km @inventory.year @inventory.DailyRate $
@@ -19,5 +27,13 @@
             @Html.ActionLink("Effacer", "Delete", new { id = inventory.Id })
         </li>
     }
+}
+else
+{
+    <p>
+        @Html.ActionLink("Trouver une voiture", "FindCars")
+    </p>
+}
+
 </ul>
 
