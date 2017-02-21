@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CarRental.Models;
-using System.Data.SqlClient;
 
 namespace CarRental.Controllers
 {
@@ -20,14 +19,14 @@ namespace CarRental.Controllers
         // GET: Agencies
         public ActionResult Index()
         {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return new HttpUnauthorizedResult();
-            //}
-            //if (!User.IsInRole("Admin") && !User.IsInRole("Agence"))
-            //{
-            //    return new HttpUnauthorizedResult();
-            //}
+            if (!User.Identity.IsAuthenticated)
+            {
+                return new HttpUnauthorizedResult();
+            }
+            if (!User.IsInRole("Admin") && !User.IsInRole("Agence"))
+            {
+                return new HttpUnauthorizedResult();
+            }
 
             var agencies = _dbContext.Agencies.ToList();
 
@@ -56,31 +55,6 @@ namespace CarRental.Controllers
                     GeoLat = i.Latitude.ToString()}).ToArray();
             return Json(geodata, JsonRequestBehavior.AllowGet);
         }
-
-
-        public JsonResult GetAgencyDataJsonByDistance(double dLatitude, double dLongitude, int iDistance)
-        {
-            // Sql code is borrowed from: http://stackoverflow.com/questions/5031268/algorithm-to-find-all-latitude-longitude-locations-within-a-certain-distance-fro
-            string strSQL = "SELECT * FROM( SELECT *,(((acos(sin((@latitude * pi() / 180)) * sin((Latitude * pi() / 180)) + cos((@latitude * pi() / 180)) * cos((Latitude * pi() / 180)) * cos(((@longitude - Longitude) * pi() / 180)))) * 180 / pi()) * 60 * 1.1515 * 1.609344) as distance FROM Agencies) t WHERE distance <= @distance";
-
-            IEnumerable<Agency> data = _dbContext.Agencies.SqlQuery(strSQL,
-                new SqlParameter("latitude", dLatitude),
-                new SqlParameter("longitude", dLongitude),
-                new SqlParameter("distance", iDistance));
-
-
-            IEnumerable<Geodata> geodata = data
-                .Select(i => new Geodata
-                {
-                    Id = i.Id,
-                    Name = i.Name,
-                    GeoLong = i.Longitude.ToString(),
-                    GeoLat = i.Latitude.ToString()
-                }).ToArray();
-            return Json(geodata, JsonRequestBehavior.AllowGet);
-        }
-
-
 
         public class Geodata
         {
