@@ -80,7 +80,7 @@ namespace CarRental.Controllers
             //       Value = d.Id.ToString(),
             //       Text = d.Brand + " " + d.model + " " + d.Type + " " + d.NumberOfDoors + " portes " + d.NumberOfPassenger + " passagers " + d.HorsePower + "hp " + d.DailyRate + "$"
             //   });
-
+             
             //ViewBag.CarId = caritems;
             var carinventory = _dbContext.CarInventories.SingleOrDefault(v => v.Id == id);
 
